@@ -2,8 +2,6 @@
 
 Flight planning and CDU entry assistance for the ASC C-130J in DCS World.
 
-**Free to use. Created by the rights holder.**
-
 ## Download and install
 
 1. Open **Releases** on this repository and select the latest release.
