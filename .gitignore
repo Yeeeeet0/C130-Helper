@@ -1,6 +1,23 @@
+# Local environments and generated builds
+.venv/
+__pycache__/
+*.py[cod]
+build/
+dist/
+output/
+tmp/
+live/
+release/
 *.exe
 *.pdf
 *.zip
 *.sqlite
+*.sqlite-*
+*.db
 *.jsonl
+*.log
 .env*
+dcs-location.json
+flight-plans/
+.vscode/
+.idea/

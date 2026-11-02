@@ -1,0 +1,5 @@
+pywebview>=6,<7
+pyinstaller>=6,<7
+Pillow>=12,<13
+pypdf>=6,<7
+reportlab>=4,<5

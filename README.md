@@ -22,7 +22,7 @@ On the release page, scroll to **Assets** and expand it if needed. Download `C13
 
 The installer includes the app, PDF guide, DCS bridge and native kneeboard pages.
 No separate Python installation is required. If WebView2 is missing, its setup needs internet access.
-GitHub's automatically generated source archives contain this downloads repository, not the installer.
+GitHub's automatically generated source archives contain source code, not the Windows installer.
 
 ## Features
 
@@ -85,5 +85,15 @@ Authorised recipients may use the app free of charge. Redistribution, mirrors, r
 require prior written permission from the rights holder. See [LICENSE.txt](LICENSE.txt) for the full terms.
 Third-party components retain their separate terms in [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt).
 
-This repository provides official downloads, documentation and issue tracking. Application source
-and build data are maintained separately. DCS, ASC and other third-party names remain their owners' property.
+This repository provides application source, official downloads, documentation and issue tracking. DCS, ASC and other third-party names remain their owners' property.
+
+## Development source
+
+The current application source is in [src/](src), its interface and bridges in [assets/](assets),
+and automated checks in [tests/](tests). See [DEVELOPMENT.md](DEVELOPMENT.md) for setup,
+private data requirements, build instructions and known limitations. The existing licence applies.
+
+Source on `main` is ahead of the published v1.0.0 installer. Source updates do not replace release assets.
+Automatic speed/altitude entry is under development: ASC can carry cruise altitude into STAR legs;
+protection/restoration of published procedure restrictions remains outstanding.
+DCS/ASC databases, terrain charts, local settings, logs and saved flight plans are excluded.

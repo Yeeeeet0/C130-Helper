@@ -1,0 +1,121 @@
+<style>
+.helper{margin:24px 0;border:1px solid #497368;border-radius:14px;background:#111e29;padding:22px}.helper h2{margin-bottom:10px}.helper-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.helper input,.helper textarea{width:100%;background:#0b141e;color:#eaf1f6;border:1px solid #435668;border-radius:6px;padding:9px;font:inherit}.helper textarea{font-family:Consolas,monospace;min-height:130px}.helper button{padding:9px 13px;border:1px solid #54766e;border-radius:6px;background:#203e39;color:#d6fff0;margin:5px 6px 5px 0}.helper button:disabled{opacity:.4;cursor:default}.helper label{margin-top:9px}.helper .fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.helper .entry{background:#0b141e;border:1px solid #304a5c;padding:16px;border-radius:8px;margin-top:12px}.helper .entry code{display:block;color:#7de4c5;font-size:22px;overflow-wrap:anywhere;margin:10px 0}.helper .check{display:flex;gap:10px;align-items:center;text-transform:none;font-size:13px;letter-spacing:0}.helper .check input{width:auto}.helper .status{white-space:pre-wrap;color:#c9dce9;margin:10px 0;min-height:24px}.helper progress{width:100%;height:12px;accent-color:#80e2c4}.auto-progress-summary{display:flex;justify-content:space-between;gap:14px;margin:14px 0 6px;color:#9eb8c9}.auto-progress-summary strong{color:#80e2c4}.helper details{margin:10px 0;color:#9eb8c9}.helper details summary{cursor:pointer}.helper h3{font-size:18px}@media(max-width:800px){.helper-grid{grid-template-columns:1fr}}@media print{.helper button,.helper .editor,.helper .auto{display:none}}
+
+.helper [hidden]{display:none!important}.helper[data-entry-mode=manual] .helper-grid{grid-template-columns:1fr}.manual-plan[hidden]{display:none}.manual-plan-tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.manual-plan-tools label{margin:0}.manual-plan-tools select{width:auto;margin-right:12px}.manual-plan h4{margin:24px 0 8px;color:#a5e9d9}.manual-plan table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:12px}.manual-plan th,.manual-plan td{padding:9px;border:1px solid #304a5c;text-align:left;vertical-align:top;overflow-wrap:anywhere}.manual-plan th{background:#172b3b}.manual-plan th:first-child{width:44%}.manual-plan .manual-table-scroll{overflow-x:auto}.manual-plan table{min-width:0}.manual-plan .manual-table-scroll code{font:bold 16px/1.5 Consolas,monospace;color:#9ff1da;display:block;margin:0}.manual-plan small{display:block;font:11px/1.5 Consolas,monospace;color:#c3d8e5;margin-top:5px}.flight-step .helper[data-entry-mode=manual] .helper-grid{grid-template-columns:1fr}
+.manual-plan.entry{padding:10px;margin-top:8px}.manual-plan h3{font-size:15px;margin:5px 0 8px}.manual-plan th,.manual-plan td{padding:4px 6px;line-height:1.3}.manual-plan thead th{font-size:10px}.manual-plan th:first-child{width:auto}.manual-plan thead th:first-child{width:32%}.manual-plan .manual-section th{padding:4px 6px;font-size:11px;background:#152b39;color:#b7dedf}.manual-plan .manual-table-scroll code{display:inline;font-size:14px;line-height:1.3}.manual-plan small{display:inline;margin:0 0 0 8px;font:11px/1.3 Consolas,monospace}.manual-plan-tools button{padding:6px 9px;margin:2px}.manual-plan-tools select{padding:5px}.manual-plan-tools+p{margin:5px 0;font-size:11px}.manual-plan .manual-sheet{background:#0b141e;color:#dcebf4;padding:12px;border-radius:3px;font:13px/1.3 Segoe UI,system-ui,sans-serif}.manual-plan .manual-sheet h1{font-size:20px;line-height:1.3;margin:0 0 3px;color:#e3edf5}.manual-plan .manual-sheet p{font:13px/1.3 Segoe UI,system-ui,sans-serif;color:#abc2d2;margin:3px 0 8px}.manual-plan .manual-sheet table{font:13px/1.3 Segoe UI,system-ui,sans-serif;color:#dcebf4}.manual-plan .manual-sheet th,.manual-plan .manual-sheet td{padding:4px 6px;border-color:#304a5c;color:#dcebf4;letter-spacing:0;text-transform:none}.manual-plan .manual-sheet thead th{background:#1a303e;color:#b5cfdf;font-size:11px}.manual-plan .manual-sheet .manual-section th{background:#152b39;color:#a5e9d9;font-size:12px}.manual-plan .manual-sheet code{color:#9ff1da;font:bold 14px/1.3 Consolas,monospace}.manual-plan .manual-sheet small{color:#c3d8e5;font:11px/1.3 Consolas,monospace}.manual-plan .manual-sheet thead th:first-child{width:auto}.manual-plan .manual-page-col{width:24%}.manual-plan .manual-entry-col{width:14%}.manual-plan .manual-sheet .page{width:24%}.manual-plan .manual-sheet .field{width:14%}.manual-plan .manual-sheet .fix-value{width:34%}.manual-plan .manual-sheet .fix-speed{width:12%}.manual-plan .manual-sheet .fix-altitude{width:16%}.manual-plan .manual-sheet td.fixes-wrap{padding:0;border:0}.manual-plan .manual-sheet .fixes-table{margin:0}.manual-plan .manual-sheet .fixes-table th{font-size:10px}</style>
+<section class="helper" id="cdu-helper">
+
+<div class="helper-grid">
+<div class="editor">
+<label for="helperMode">Entry mode</label><select id="helperMode"><option value="manual">Manual</option><option value="auto">Automatic</option></select>
+<label for="helperKind">Data to prepare</label><select id="helperKind"><option value="navigation">Selected map route</option><option value="waypoints">Waypoints</option><option value="ipra">IPRA</option></select>
+<div id="navigationEditor"><p id="navigationSummary" style="margin:15px 0;color:#a8dcca">No route selected.</p><button id="editMapRoute">Edit route</button></div>
+<div id="waypointEditor"><label for="waypointCsv">Waypoints CSV — decimal degrees, elevation in feet</label><textarea id="waypointCsv" spellcheck="false" placeholder="ident,lat,lon,elevation_ft&#10;POINT1,42.1767,42.4826,148">ident,lat,lon,elevation_ft</textarea>
+<label for="helperProcedure">Use an ASC SID or STAR from the reference database</label><select id="helperProcedure"></select><button id="useProcedure">Load fixes into editor</button><p class="small">Copies fix positions only. Procedure leg types, restrictions and turn logic are not recreated; use CDU DEP/ARR for the actual SID/STAR.</p></div>
+<div id="ipraEditor" hidden>
+<button id="useRunway">Use selected arrival runway</button><p class="small" id="runwaySource">Enter your runway reference and approach values below.</p>
+<div class="fields">
+<div><label for="rpi">RPI waypoint identifier</label><input id="rpi" placeholder="RWYREF" maxlength="8"></div>
+<div><label for="course">Runway orientation °</label><input id="course" placeholder="Match CDU north reference"></div>
+<div><label for="elevation">RPI elevation ft</label><input id="elevation"></div>
+<div><label for="faf">RPI → FAF NM</label><input id="faf"></div>
+<div><label for="iaf">FAF → IAF NM</label><input id="iaf"></div>
+<div><label for="hat">MAP height above threshold ft</label><input id="hat"></div>
+<div><label for="slope">Glideslope angle °</label><input id="slope"></div>
+<div><label for="map">MAP → turn NM (page 2)</label><input id="map"></div>
+</div><p class="small">Blank optional fields are omitted. Create the RPI waypoint and place it inside the active route first. On IPRA 2/2, select approach category C or D in the cockpit. Review the procedure before selecting START.</p>
+<button id="rpiWaypoint">Prepare runway position as a waypoint</button></div>
+<button id="prepareHelper">Prepare manual plan</button><button id="saveHelper">Save plan</button><button id="loadHelper">Load plan</button><input id="helperFile" type="file" accept=".json" hidden>
+</div>
+<div>
+<div class="auto" id="autoSettings" hidden><label for="helperSeat">CDU</label><select id="helperSeat"><option value="pilot">Pilot</option><option value="copilot">Copilot</option></select><label for="inputSpeed">Input speed</label><select id="inputSpeed"><option value="default">Default</option><option value="accelerated">Accelerated</option></select><label for="inputRoute">Input route</label><select id="inputRoute"><option value="1">RTE 1</option><option value="2">RTE 2</option></select><label class="check"><input type="checkbox" id="overwriteRoute"> Replace route (clears origin and legs)</label><p class="small">Off: load only an empty route.</p><button id="checkBridge">Connect</button><button id="armRoute">Arm</button><p class="small">Double-click CAPS to start/stop · Hold 1.5s to accept.</p><details class="small"><summary>Help</summary><p>Install the bridge and restart DCS once. Choose the CDU and route, then arm. Replacements pause until accepted. Review in the cockpit before EXEC.</p></details></div>
+<section class="entry manual-plan" id="manualChecklist" aria-label="Complete manual CDU plan"><div class="manual-plan-tools"><label for="manualRoute">Route</label><select id="manualRoute"><option value="1">RTE 1</option><option value="2">RTE 2</option></select><button id="copyManualPlan" disabled>Copy plan</button><button id="printManualPlan" disabled>Save / print plan</button><button id="saveManualText" disabled>Save text</button><button id="sendKneeboard" disabled>Send to kneeboard</button></div><p class="small">Read the complete plan here, or save it for another screen or device. No step confirmations.</p><details class="small"><summary>Live kneeboard</summary><p>Install this update and start DCS once. After that, Send to kneeboard updates the loaded C-130J page without re-slotting. Use the normal DCS kneeboard page controls. Twenty page slots are reserved; the footer shows how many the current plan uses.</p></details><div id="manualPlanBody" class="manual-sheet"><p>Review a route to prepare its manual entry plan.</p></div></section>
+<div class="entry" id="autoRoutePanel" hidden><div class="overline">Automatic input</div><h3 id="autoRoutePhase">Ready</h3><div class="auto-progress-summary"><span id="autoRouteCount">0 / 0 entries</span><strong id="autoRoutePercent">0%</strong></div><progress id="autoRouteProgress" value="0" max="100" aria-label="CDU input progress"></progress><button id="abortRoute" disabled>Stop</button></div><p class="status" id="helperStatus" hidden role="status" aria-live="polite">Ready.</p>
+</div></div></section>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), db=JSON.parse($('db').textContent);
+let rows=[], busy=false, poll=null, runwayPosition=null, navigationPlan=null, manualSource=null, manualReport=null, manualLoading=false, manualToken=0;
+const ids=['rpi','course','elevation','faf','iaf','hat','slope','map'];
+const message=s=>{$('helperStatus').textContent=s;$('helperStatus').hidden=!s||s==='Ready.';};
+async function api(name,...args){if(!window.pywebview?.api)throw Error('Open the desktop application to prepare or send entries.');const result=await window.pywebview.api[name](...args);if(result.error)throw Error(result.error);return result;}
+const act=fn=>async()=>{try{await fn()}catch(e){message(e.message)}};
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const manualRequest=()=>({...structuredClone(manualSource),route:Number($('manualRoute').value)});
+function render(){
+ const ready=manualReport&&manualSource?.kind===$('helperKind').value;
+ $('manualPlanBody').innerHTML=manualLoading?'<p>Preparing manual plan…</p>':!ready?'<p>Review a route or prepare waypoint / IPRA data to see the complete entry plan.</p>':`<h1>${esc(manualReport.title)}</h1><p>${esc(manualReport.subtitle)}</p><div class="manual-table-scroll">${manualReport.table_html}</div>`;
+ buttons();
+}
+function buttons(){
+ $('abortRoute').disabled=!busy;
+ for(const id of ['copyManualPlan','printManualPlan','saveManualText','sendKneeboard'])$(id).disabled=busy||manualLoading||!manualReport||manualSource?.kind!==$('helperKind').value;
+ $('manualRoute').disabled=busy||manualLoading;
+ for(const id of ['prepareHelper','useProcedure','useRunway','rpiWaypoint','loadHelper','helperMode','helperKind','helperSeat','inputRoute','inputSpeed','overwriteRoute','armRoute'])$(id).disabled=busy;
+}
+async function refreshManual(){
+ if(!manualSource)return;
+ const token=++manualToken,request=manualRequest();manualLoading=true;manualReport=null;render();
+ try{const result=await api('prepare_manual_plan',request);if(token===manualToken)manualReport=result.report;}
+ finally{if(token===manualToken){manualLoading=false;render();}}
+}
+function modes(){const automatic=$('helperMode').value==='auto';$('cdu-helper').dataset.entryMode=automatic?'auto':'manual';$('autoSettings').hidden=$('autoRoutePanel').hidden=!automatic;$('manualChecklist').hidden=automatic;$('waypointEditor').hidden=$('helperKind').value!=='waypoints';$('ipraEditor').hidden=$('helperKind').value!=='ipra';$('navigationEditor').hidden=$('helperKind').value!=='navigation';$('prepareHelper').hidden=$('helperKind').value==='navigation';$('prepareHelper').textContent='Prepare manual plan';render();}
+$('helperMode').onchange=modes;
+$('helperKind').onchange=act(async()=>{modes();if($('helperKind').value==='navigation'&&navigationPlan)await window.CduHelper.useNavigationPlan(navigationPlan);});
+$('manualRoute').onchange=act(refreshManual);
+$('prepareHelper').onclick=act(async()=>{
+ if($('helperKind').value==='navigation'){if(!navigationPlan)throw Error('Review a complete map route first.');await window.CduHelper.useNavigationPlan(navigationPlan);return;}
+ manualSource=$('helperKind').value==='waypoints'?{kind:'waypoints',text:$('waypointCsv').value}:{kind:'ipra',data:Object.fromEntries(ids.map(id=>[id,$(id).value])),units:Display.settings.units};
+ await refreshManual();message('Manual entry plan ready.');
+});
+$('copyManualPlan').onclick=act(async()=>{try{await navigator.clipboard.writeText(manualReport.text);message('Plan copied.');}catch{window.prompt('Copy manual CDU plan:',manualReport.text);}});
+for(const [id,format] of [['printManualPlan','html'],['saveManualText','txt']])$(id).onclick=act(async()=>{const result=await api('export_manual_plan',manualRequest(),format);message(result.message);});
+$('sendKneeboard').onclick=act(async()=>{busy=true;buttons();try{message('Updating live kneeboard…');const result=await api('send_manual_kneeboard',manualRequest());message(result.message);}finally{busy=false;buttons();}});
+$('checkBridge').onclick=act(async()=>message((await api('connection')).message));
+$('armRoute').onclick=act(async()=>{if(!navigationPlan)throw Error('Send a complete map route to the helper first.');message((await api('arm_route',navigationPlan,$('helperSeat').value,{route:Number($('inputRoute').value),overwrite:$('overwriteRoute').checked,speed:$('inputSpeed').value})).message);busy=true;buttons();poll=setInterval(async()=>{try{const s=await api('status');automaticStatus(s);message(s.message);if(!s.running){clearInterval(poll);busy=false;buttons()}}catch(e){clearInterval(poll);busy=false;buttons();message(e.message)}},500);});
+$('abortRoute').onclick=act(async()=>message((await api('stop')).message));
+const procedures=(db.procedures||[]).slice().sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+for(const p of procedures){const a=db.airfields.find(a=>a.airfield_id===p.airfield_id);$('helperProcedure').add(new Option(`${a?.dcs_name||''} / ${p.procedure_type} / ${p.name} ${p.transition_name||''}`,p.procedure_id));}
+$('useProcedure').onclick=()=>{const legs=db.procedure_legs.filter(l=>l.procedure_id===$('helperProcedure').value).sort((a,b)=>a.sequence_no-b.sequence_no);const usable=legs.filter(l=>l.fix_lat_deg!=null&&l.fix_lon_deg!=null);$('waypointCsv').value=('ident,lat,lon,'+(Display.metric?'elevation_m':'elevation_ft')+'\n')+usable.map((l,i)=>`${String(l.fix_name||'W'+(i+1)).replace(/[^a-z0-9]/gi,'').slice(0,8)},${formatInput(l.fix_lat_deg,true)},${formatInput(l.fix_lon_deg,false)},`).join('\n');message(`Loaded ${usable.length} positions; ${legs.length-usable.length} legs without coordinates omitted. Review identifiers. Use DEP/ARR to load full procedure behavior.`)};
+$('useRunway').onclick=()=>{const end=db.runway_ends.find(e=>e.runway_end_id===$('arrRunway').value);if(!end){message('Select an arrival runway first.');return}runwayPosition=end;$('rpi').value='RW'+end.designator;$('course').value='';$('elevation').value=end.threshold_elevation_m==null?'':Display.metric?end.threshold_elevation_m:Math.round(end.threshold_elevation_m/0.3048);$('runwaySource').textContent=`RWY ${end.designator} • position status: ${end.threshold_status||'UNKNOWN'}. True course: ${end.true_course_deg??'unknown'}°; magnetic: ${end.magnetic_course_deg??'unknown'}°. Enter the orientation matching the CDU reference. Derived threshold positions are estimates, not verified IPRA RPI locations.`;message('Runway reference loaded. Check the RPI location, elevation and course before preparing.');};
+$('rpiWaypoint').onclick=()=>{if(!runwayPosition||runwayPosition.threshold_lat_deg==null||runwayPosition.threshold_lon_deg==null){message('Load an arrival runway with a position first.');return}$('waypointCsv').value=`ident,lat,lon,${Display.metric?'elevation_m':'elevation_ft'}\n${$('rpi').value},${formatInput(runwayPosition.threshold_lat_deg,true)},${formatInput(runwayPosition.threshold_lon_deg,false)},${$('elevation').value}`;$('helperKind').value='waypoints';modes();message('Runway waypoint is in the editor. Verify its position, prepare it, and insert it inside the active route before IPRA.');};
+function automaticStatus(s){
+ $('inputRoute').disabled=$('inputSpeed').disabled=$('overwriteRoute').disabled=!!s.running||busy;
+ $('abortRoute').textContent=s.awaiting_confirmation?'Deny':'Stop';
+ $('autoRoutePhase').textContent=s.awaiting_confirmation?'Awaiting confirmation':s.executing?'Entering route':s.armed?'Armed · double-click CAPS':s.running?'Preparing':s.total&&s.sent===s.total?'Complete':s.sent>0?'Stopped':'Ready';
+ const total=Math.max(0,Number(s.total)||0),done=Math.min(total,Math.max(0,Number(s.sent)||0));
+ const percent=total?Math.floor(done*100/total):0;
+ $('autoRouteProgress').max=100;$('autoRouteProgress').value=percent;
+ $('autoRoutePercent').textContent=percent+'%';$('autoRouteCount').textContent=done+' / '+total+' entries';
+ $('autoRouteProgress').setAttribute('aria-valuetext',done+' of '+total+' entries completed');
+}
+
+window.CduHelper={get busy(){return busy;},snapshot(){return {waypoints:$('waypointCsv').value,ipra:Object.fromEntries(ids.map(id=>[id,$(id).value])),entry:{mode:$('helperMode').value,seat:$('helperSeat').value,route:$('inputRoute').value,manualRoute:$('manualRoute').value,speed:$('inputSpeed').value,overwrite:$('overwriteRoute').checked}};},restoreInputs(saved){
+ ++manualToken;manualLoading=false;navigationPlan=null;manualSource=null;manualReport=null;$('navigationSummary').textContent='Review the loaded flight plan to prepare CDU entries.';
+ $('waypointCsv').value=typeof saved.waypoints==='string'?saved.waypoints:'ident,lat,lon,elevation_ft';for(const id of ids)$(id).value=String(saved.ipra?.[id]??'');
+ const entry=saved.entry||{};for(const [id,key,fallback] of [['helperMode','mode','manual'],['helperSeat','seat','pilot'],['inputRoute','route','1'],['manualRoute','manualRoute','1'],['inputSpeed','speed','default']]){const value=String(entry[key]??fallback);$(id).value=[...$(id).options].some(o=>o.value===value)?value:fallback;}
+ $('overwriteRoute').checked=entry.overwrite===true;$('helperKind').value='navigation';modes();
+},updateStatus:automaticStatus,async useNavigationPlan(plan){if(busy)throw Error('Stop the current CDU entry before changing the plan.');const result=await api('prepare_database_route',plan);navigationPlan=JSON.parse(JSON.stringify(plan));rows=result.rows;manualSource={kind:'navigation',plan:structuredClone(navigationPlan)};$('helperKind').value='navigation';$('navigationSummary').textContent=[plan.origin?.ident,...result.rows.filter(r=>r.label.startsWith('SID')).map(r=>'['+r.value+']'),...(plan.departure?.fixes||[]).map(p=>p.ident),...plan.points.map(p=>p.ident),...(plan.arrival?.fixes||[]).map(p=>p.ident),...result.rows.filter(r=>r.label.startsWith('STAR')).map(r=>'['+r.value+']'),plan.destination?.ident].filter(Boolean).join(' → ');await refreshManual();modes();const aids=result.arrival_radios||{};const radioSummary=[aids.ils?'VOR1 '+aids.ils.frequency+' / NAV DATA '+aids.ils.ident:'',aids.tacan?'TAC1 '+aids.tacan.channel:''].filter(Boolean).join(' · ');$('navigationSummary').textContent+=(radioSummary?' | Radios: '+radioSummary:'');$('navigationSummary').textContent+=(result.rows.some(r=>r.constraint)?' | Speed / altitude: manual entry':'');$('navigationSummary').title=(aids.notes||[]).join(' ');message('Ready.');}};
+$('editMapRoute').onclick=()=>window.showWorkspace?.('map');
+$('saveHelper').onclick=act(async()=>{const plan={version:1,waypoints:$('waypointCsv').value,ipra:Object.fromEntries(ids.map(id=>[id,$(id).value])),navigation:$('helperKind').value==='navigation'?navigationPlan:null,display:Display.settings};message((await api('save_plan',plan)).message);});
+$('loadHelper').onclick=act(async()=>{const result=await api('load_plan');if(result.cancelled)return;const p=result.plan;Display.set(p.display||{coordinates:'DDM',units:'imperial'});$('waypointCsv').value=p.waypoints;for(const id of ids)$(id).value=String(p.ipra[id]??'');runwayPosition=null;if(p.navigation){await window.CduHelper.useNavigationPlan(p.navigation)}else{navigationPlan=null;rows=[];manualSource=null;manualReport=null;render();message('Plan loaded. Prepare a fresh manual plan to validate the entries.');}});
+function formatInput(v,lat){return Display.settings.coordinates==='DDM'?Display.coordinate(Number(v),lat):Number(v).toFixed(6)}
+function displayInputs(previous){
+ const changed=previous.units!==Display.settings.units;
+ if(changed){for(const id of ['elevation','hat','faf','iaf','map']){const text=$(id).value.trim();if(text&&Number.isFinite(Number(text))){const factor=['elevation','hat'].includes(id)?.3048:1.852;$(id).value=String(Number((Number(text)*(Display.metric?factor:1/factor)).toFixed(6)))}}}
+ const lines=$('waypointCsv').value.split(/\r?\n/),head=lines[0].split(','),latIndex=head.indexOf('lat'),lonIndex=head.indexOf('lon'),eIndex=Math.max(head.indexOf('elevation_ft'),head.indexOf('elevation_m'));
+ if(eIndex>=0&&changed)head[eIndex]=Display.metric?'elevation_m':'elevation_ft';
+ for(let i=1;i<lines.length;i++){const values=lines[i].split(',');try{if(values[latIndex]?.trim())values[latIndex]=formatInput(Display.parse(values[latIndex],true),true);if(values[lonIndex]?.trim())values[lonIndex]=formatInput(Display.parse(values[lonIndex],false),false);}catch{}if(changed&&eIndex>=0&&values[eIndex]?.trim()&&Number.isFinite(Number(values[eIndex])))values[eIndex]=String(Number((Number(values[eIndex])*(Display.metric?.3048:1/.3048)).toFixed(6)));lines[i]=values.join(',');}
+ lines[0]=head.join(',');$('waypointCsv').value=lines.join('\n');
+ const labels={elevation:'RPI elevation',hat:'MAP height above threshold',faf:'RPI → FAF',iaf:'FAF → IAF',map:'MAP → turn (page 2)'};
+ for(const [id,label] of Object.entries(labels))document.querySelector('label[for="'+id+'"]').textContent=label+' '+(['elevation','hat'].includes(id)?Display.metric?'m':'ft':Display.metric?'km':'NM');
+ document.querySelector('label[for="waypointCsv"]').textContent='Custom waypoints CSV — '+Display.settings.coordinates+', elevation '+(Display.metric?'m':'ft');
+ $('waypointCsv').placeholder=Display.settings.coordinates==='DDM'?'ident,lat,lon,'+(Display.metric?'elevation_m':'elevation_ft')+'\nPOINT1,N4210.60,E04228.96,':'ident,lat,lon,'+(Display.metric?'elevation_m':'elevation_ft')+'\nPOINT1,42.1767,42.4826,';
+ // Preserve progress/readiness while changing display preferences.
+ render();
+}
+window.addEventListener('displaychange',e=>displayInputs(e.detail.previous));
+displayInputs({coordinates:'DD',units:'imperial'});
+render();modes();
+})();
+</script>
