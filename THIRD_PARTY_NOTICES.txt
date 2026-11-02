@@ -3,7 +3,7 @@ THIRD-PARTY NOTICES — C-130J CDU Helper
 Scope
 =====
 Third-party components retain their own licences and copyright holders.
-The the rights holder proprietary licence does not restrict rights granted by
+The Helper proprietary licence does not restrict rights granted by
 these separate licences. Notices below include runtime components and
 build tools; listing a build tool does not mean its full source is bundled.
 

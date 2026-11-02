@@ -27,7 +27,11 @@ The receiving PC needs its own DCS ASC C-130J installation.
 
 ## Checks and limitations
 
-The current build passed 194 automated tests, local browser checks, and packaged app/installer
+The current build passed 197 automated tests, local browser checks, and packaged app/installer
 self-checks. Tests do not establish live acceptance for every DCS/ASC database version.
 Chart, runway, procedure and radio availability depend on the installed data. Review the actual
 CDU route and radios before flight; activation / EXEC remain manual. The installer is not digitally signed.
+
+## Distribution refresh
+
+Personal credits were removed from the app, documentation and publisher metadata. The actual licence is unchanged.

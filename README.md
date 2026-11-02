@@ -2,6 +2,8 @@
 
 Flight planning and CDU entry assistance for the ASC C-130J in DCS World.
 
+**Free to use under the supplied licence.**
+
 ## Download
 
 **[Download the Windows installer](https://github.com/Yeeeeet0/C130-Helper/releases/latest/download/C130J_CDU_Helper_Setup.exe)**
@@ -79,9 +81,8 @@ personal information before attaching them publicly.
 
 ## Licence
 
-Copyright 2026 the rights holder in the original Helper code and documentation, to the extent owned by him.
 Authorised recipients may use the app free of charge. Redistribution, mirrors, repackaging and sale
-require the rights holder's prior written permission. See [LICENSE.txt](LICENSE.txt) for the full terms.
+require prior written permission from the rights holder. See [LICENSE.txt](LICENSE.txt) for the full terms.
 Third-party components retain their separate terms in [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt).
 
 This repository provides official downloads, documentation and issue tracking. Application source
