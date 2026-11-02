@@ -2,6 +2,14 @@
 
 Flight planning and CDU entry assistance for the ASC C-130J in DCS World.
 
+## Download
+
+**[Download the Windows installer](https://github.com/Yeeeeet0/C130-Helper/releases/latest/download/C130J_CDU_Helper_Setup.exe)**
+
+[Read the PDF user guide](https://github.com/Yeeeeet0/C130-Helper/releases/latest/download/C130J_CDU_Helper_User_Guide.pdf) | [All release files](https://github.com/Yeeeeet0/C130-Helper/releases/latest)
+
+On the release page, scroll to **Assets** and expand it if needed. Download `C130J_CDU_Helper_Setup.exe` to install the app.
+
 ## Download and install
 
 1. Open **Releases** on this repository and select the latest release.
