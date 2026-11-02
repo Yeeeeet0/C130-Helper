@@ -1,0 +1,6 @@
+*.exe
+*.pdf
+*.zip
+*.sqlite
+*.jsonl
+.env*

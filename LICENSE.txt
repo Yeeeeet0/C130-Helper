@@ -1,0 +1,66 @@
+C-130J CDU Helper — Free-use proprietary licence
+Version 1.1 · 30 October 2026
+
+Copyright © 2026 Marc Benton. All rights reserved in the original helper
+code, interface and documentation to the extent owned by Marc Benton.
+
+1. Free use
+Marc Benton grants recipients of an authorised copy a non-exclusive,
+non-transferable licence, free of charge, to install and use the Helper
+with their own lawfully obtained DCS and ASC C-130J installation. You may
+make copies needed for your own installation and backup. This licence
+does not transfer ownership or grant a right to distribute the Helper.
+
+2. Distribution reserved to Marc Benton
+Only Marc Benton may distribute, publish, host, upload, mirror, share,
+sell, rent, sublicense, bundle or repackage the Helper, its installer,
+its original source code or modified versions, unless Marc Benton has
+given prior written permission. This applies to both free and paid
+redistribution, including inclusion in mod packs or other installers.
+Recipients may not charge for access to copies or downloads of the Helper.
+Permission to use the Helper is not permission to redistribute it.
+
+3. Unauthorised commercial distribution
+Selling, charging for access to, or commercially distributing the Helper
+without Marc Benton's prior written permission is prohibited. Marc Benton
+reserves the right to seek all remedies available under applicable law,
+including an injunction, damages or an account of profits attributable
+to infringement. No unauthorised sale grants the seller any distribution
+rights.
+
+4. Your plans and demonstrations
+You retain your rights in your own flight plans, custom waypoint data
+and other original output. You may share those outputs, screenshots,
+videos, reviews and tutorials without redistributing the Helper itself,
+subject to any rights held by third parties in their content.
+
+5. Notices and third-party rights
+Keep this licence and the accompanying notices with your authorised
+copies. Third-party software, fonts, runtime components, databases,
+charts, reference material, DCS and ASC content retain their respective
+owners' rights and licences. THIRD_PARTY_NOTICES.txt identifies software
+components and supplied licence texts. Those separate terms govern those
+components and take precedence over conflicting restrictions here.
+Nothing here grants rights to redistribute third-party content, claims
+Marc Benton owns it, or limits rights that applicable law cannot exclude.
+The Helper is an independent utility; no endorsement by DCS, Eagle
+Dynamics, ASC or their respective owners is claimed.
+
+6. Simulation use and warranty
+The Helper is for flight simulation, not real-world navigation. Verify
+route entries and navigation data in the simulator. To the extent allowed
+by law, it is provided "as is", without warranties of accuracy, fitness,
+availability or uninterrupted operation. To the extent allowed by law,
+Marc Benton is not liable for loss or damage arising from its use.
+Nothing excludes liability or statutory rights that cannot lawfully be
+excluded, including liability for fraud or death or personal injury caused
+by negligence where applicable.
+
+7. Breach and permission
+If you materially breach these terms, your permission to use the original
+Helper ends; stop using it and remove your copies. Separate third-party
+rights and non-excludable statutory rights are unaffected. Permissions
+outside this licence must be obtained in writing directly from Marc
+Benton through the channel from which you received your authorised copy.
+
+Installing or using the Helper signifies acceptance of these terms.

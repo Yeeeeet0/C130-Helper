@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a problem with the Helper
+title: "[Bug] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Release version
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Flight and CDU setup
+      description: Terrain, airport/runway, SID/STAR, route slot, Pilot/Copilot, input speed and replacement setting.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened?
+      description: Steps to reproduce, expected result and exact app/CDU message.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or diagnostic log
+      description: Attach relevant files if useful. Review them for personal information before posting.
